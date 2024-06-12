@@ -1,49 +1,44 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, onSnapshot, updateDoc, query, where } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js"
-// Your web app's Firebase configuration
+
+import { getFirestore, getDoc, doc, onSnapshot, deleteDoc, updateDoc, query, collection, where, addDoc, getDocs} from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js"
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAlO_OlWnPBNth1dcamrOJIvJVnyPbsCTE",
-  authDomain: "formulario-c4a02.firebaseapp.com",
-  projectId: "formulario-c4a02",
-  storageBucket: "formulario-c4a02.appspot.com",
-  messagingSenderId: "679722861567",
-  appId: "1:679722861567:web:8345010a4dddc776e85dca"
+  apiKey: "AIzaSyBZKnDxAtAOcaSnYtXdUEQ2xX4hdW2laJs",
+  authDomain: "mtg-prueba.firebaseapp.com",
+  projectId: "mtg-prueba",
+  storageBucket: "mtg-prueba.appspot.com",
+  messagingSenderId: "264705959398",
+  appId: "1:264705959398:web:54fd11bf2c6215884b2227"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+export const obtener = (id) => {
+  return getDoc(doc(db, 'cartas', id))
+}
 
-export const anadir = async (form) => {
-  const q = query(collection(db, 'formulario'), where("email", "==", form.email));
+export const info = (data) => {
+  onSnapshot(collection(db, 'cartas'), data)
+}
 
-  const querySnapshot = await getDocs(q);
+export const eliminar = (id) => {
+  deleteDoc(doc(db, 'cartas', id))
+}
+
+export const actualizar = (id, data) => {
+  updateDoc(doc(db, 'cartas', id), data)
+}
+export const anadir = async (cartas) => {
+  const tip = query(collection(db, 'cartas'), where("serie", "==", cartas.serie));
+
+  const querySnapshot = await getDocs(tip);
 
   if (querySnapshot.empty) {
-    await addDoc(collection(db, 'formulario'), form);
+    await addDoc(collection(db, 'cartas'), cartas);
     return true;
   } else {
     return false;
   }
-}
-
-export const info = (data) => {
-  onSnapshot(collection(db, 'formulario'), data)
-}
-
-export const eliminar = (id) => {
-  deleteDoc(doc(db, 'formulario', id))
-}
-
-export const obtener = (id) => {
-  return getDoc(doc(db, 'formulario', id))
-}
-
-export const actualizar = (id, data) => {
-  updateDoc(doc(db, 'formulario', id), data)
 }

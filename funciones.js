@@ -2,31 +2,28 @@ import { anadir, info, actualizar, eliminar, obtener } from './firebase.js'
 
 let id = 0
 
-document.getElementById('btn-enviar').addEventListener('click', async () => {
-    validarRecommend()
-    validarOpinion()
+document.getElementById('boton-enviar').addEventListener('click', async () => {
+    colorValida()
     document.querySelectorAll('.form-control').forEach(item => {
-        verificar(item.id)
+        verificacion(item.id)
     })
 
     if (document.querySelectorAll('.is-invalid').length === 0) {
-        if (document.getElementById('btn-enviar').value === 'Enviar') {
-            const formulario = {
-                'nombreCompleto': document.getElementById('nombreCompleto').value,
-                'email': document.getElementById('email').value,
+        if (document.getElementById('boton-enviar').value === 'Enviar') {
+            const form = {
+                'nombre': document.getElementById('nombre').value,
+                'serie': document.getElementById('serie').value,
                 'fecha': document.getElementById('fecha').value,
-                'producto': document.getElementById('producto').value,
-                'calificacion': document.getElementById('calificacion').value,
-                'comentario': document.getElementById('comentario').value,
-                'opinion': document.querySelector('input[name="opinion"]:checked').value,
-                'recomendacion': document.querySelector('input[name="recomendacion"]:checked').value,
-                'sugerencias': document.getElementById('sugerencias').value
+                'edicion': document.getElementById('edicion').value,
+                'color': document.querySelector('input[name="color"]:checked').value,
+                'habilidad': document.getElementById('habilidad').value,
+                'tipo': document.getElementById('tipo').value
             }
-            const agregado = await anadir(formulario);
+            const agregado = await anadir(form);
             if(!agregado){
                 Swal.fire({
                     title: "Error",
-                    text: "Ese correo ya esta registrado",
+                    text: "El N° de serie ya esta registrado",
                     icon: "error"
                 })
             } else {
@@ -39,20 +36,17 @@ document.getElementById('btn-enviar').addEventListener('click', async () => {
                 })
             }
         } else {
-            const formulario = {
-                'nombreCompleto': document.getElementById('nombreCompleto').value,
-                'email': document.getElementById('email').value,
+            const form = {
+                'nombre': document.getElementById('nombre').value,
+                'serie': document.getElementById('serie').value,
                 'fecha': document.getElementById('fecha').value,
-                'producto': document.getElementById('producto').value,
-                'calificacion': document.getElementById('calificacion').value,
-                'comentario': document.getElementById('comentario').value,
-                'opinion': document.querySelector('input[name="opinion"]:checked').value,
-                'recomendacion': document.querySelector('input[name="recomendacion"]:checked').value,
-                'sugerencias': document.getElementById('sugerencias').value
+                'edicion': document.getElementById('edicion').value,
+                'color': document.querySelector('input[name="color"]:checked').value,
+                'habilidad': document.getElementById('habilidad').value,
+                'tipo': document.getElementById('tipo').value
             }
-            actualizar(id,formulario)
+            actualizar(id,form)
             limpiar()
-
             id = 0
         }
     }
@@ -65,15 +59,13 @@ window.addEventListener('DOMContentLoaded', () => {
         collection.forEach(doc => {
             const item = doc.data();
             tabla += `<tr>
-                <td>${item.nombreCompleto}</td>
-                <td>${item.email}</td>
+                <td>${item.nombre}</td>
+                <td>${item.serie}</td>
                 <td>${item.fecha}</td>
-                <td>${item.producto}</td>
-                <td>${item.calificacion}</td>
-                <td>${item.comentario}</td>
-                <td>${item.opinion}</td>
-                <td>${item.recomendacion}</td>
-                <td>${item.sugerencias}</td>
+                <td>${item.edicion}</td>
+                <td>${item.color}</td>
+                <td>${item.habilidad}</td>
+                <td>${item.tipo}</td>
                 <td nowrap>
                     <button class="btn btn-warning" id="${doc.id}">Editar</button>
                     <button class="btn btn-danger" id="${doc.id}">Eliminar</button>
@@ -86,19 +78,19 @@ window.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.btn-danger').forEach(btn => {
             btn.addEventListener('click', () => {
                 Swal.fire({
-                    title: "¿Estás seguro de eliminar el registro?",
-                    text: "No podrás revertir los cambios",
-                    icon: "error",
+                    title: "¿Desea eliminar el registro?",
+                    text: "No hay vuelta atras",
+                    icon: "Error",
                     showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
+                    confirmButtonColor: "green",
+                    cancelButtonColor: "red",
                     confirmButtonText: "Eliminar"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         eliminar(btn.id);
                         Swal.fire({
                             title: "Eliminado",
-                            text: "Su registro ha sido eliminado",
+                            text: "Registro eliminado",
                             icon: "success"
                         });
                     }
@@ -111,20 +103,16 @@ window.addEventListener('DOMContentLoaded', () => {
                 const doc = await obtener(btn.id);
                 const item =  doc.data();
 
-                document.getElementById('nombreCompleto').value = item.nombreCompleto;
-                document.getElementById('email').value = item.email;
+                document.getElementById('nombre').value = item.nombre;
+                document.getElementById('serie').value = item.tipo;
                 document.getElementById('fecha').value = item.fecha;
-                document.getElementById('producto').value = item.producto;
-                document.getElementById('calificacion').value = item.calificacion;
-                document.getElementById('comentario').value = item.comentario;
+                document.getElementById('edicion').value = item.edicion;
+                document.getElementById('color').value = item.color;
+                document.getElementById('habilidad').value = item.habilidad;
+                document.getElementById('tipo').value = item.habilidad;
 
-                const opinionRadio = document.querySelector(`input[name="opinion"][value="${item.opinion}"]`);
-                opinionRadio.checked = true;
-
-                const recomendacionCheckbox = document.querySelector(`input[name="recomendacion"][value="${item.recomendacion}"]`);
-                recomendacionCheckbox.checked = true;
-
-                document.getElementById('sugerencias').value = item.sugerencias;
+                const colorRadio = document.querySelector(`input[name="color"][value="${item.color}"]`);
+                colorRadio.checked = true;
 
                 id = btn.id;
             });

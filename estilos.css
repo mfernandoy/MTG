@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.fondo {
+    background-image: url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmprcG16cWhnb2o0Mjlrb2sxenB4eDIxdTZ6OW5heW5rNHI1cTc1NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1rKFPqLXSO8k2HLWhD/giphy.webp);
+    display: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.header {
+    background-color: rgb(105, 22, 126);
+    text-align: center;
+    padding: 1%;
+}
+.textoTitulo {
+    color: white;
+}
+.texto {
+    color: rgb(0, 0, 0);
+}
+.fondoFormulario {
+    background-color: gray;
+    border:3px solid black;
+}
+.fondoTabla {
+    background-color: white;
+    display: inline-block;
+    margin-left: 15%;
+    margin-top: 0.7%;
+}
+.cuadroT {
+    padding: 10px;
+}
+.margenForm {
+    margin-left: 3px;
+}

@@ -1,98 +1,87 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Formulario</title>
+    <title>MTG</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="estilos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <div class="text-center bg-dark text-white p-4">
-        <h1>Formulario Servicio al Cliente</h1>
+    <div class="header">
+        <h1 class="textoTitulo">Gestion de cartas</h1>
     </div>
-    <main class="d-flex">
+    <main class="d-flex fondo">
         <div class="container-fluid p-2">
-            <form class="card p-3">
-                <div class="m-2">
-                    <label class="form-label" for="nombreCompleto">Nombre Completo</label>
-                    <input class="form-control" type="text" name="nombreCompleto" id="nombreCompleto" onblur="verificar(this.id)">
+            <form class="fondoFormulario p-3">
+                <div class="margenForm">
+                    <label class="form-label" for="nombre">Nombre</label>
+                    <input class="form-control" type="text" name="nombre" id="nombre" onblur="verificacion(this.id)">
                 </div>
-                <div class="m-2">
-                    <label class="form-label" for="email">Email</label>
-                    <input class="form-control" type="email" name="email" id="email" onblur="verificar(this.id)">
+                <div class="margenForm">
+                    <label class="form-label" for="serie">N° Serie</label>
+                    <input class="form-control" type="text" name="serie" id="serie" onblur="verificacion(this.id)">
                 </div>
-                <div class="m-2">
-                    <label class="form-label" for="fecha">Fecha de la compra</label>
-                    <input class="form-control" type="date" id="fecha" onblur="verificar(this.id)">
+                <div class="margenForm">
+                    <label class="form-label" for="fecha">Fecha salida</label>
+                    <input class="form-control" type="date" id="fecha" onblur="verificacion(this.id)">
                 </div>
-                <div class="m-2">
-                    <label class="form-label" for="producto">Producto/Servicio adquirido</label>
-                    <input class="form-control" type="text" id="producto" name="producto" onblur="verificar(this.id)">
-                </div>
-                <div class="m-2">
-                    <label class="form-label" for="calificacion">Calificación (0/5)</label>
-                    <input type="range" class="form-range" min="0" max="5" step="1" id="calificacion" value="">
-                    <label for="calificacion" id="calificacionNumber"></label>
-                </div>
-                <div class="m-2">
-                    <label class="form-label" for="comentario">Comentarios sobre la calidad del
-                        producto/servicio</label>
-                    <textarea name="comentario" class="form-control" id="comentario" onblur="verificar(this.id)"></textarea>
-                </div>
-                <div class="m-2">
-                    <label class="form-label">Opinión sobre la atención al cliente</label><br>
+                <div class="margenForm">
+                    <label class="form-label" for="edicion">Edición</label>
+                    <input class="form-control" type="text" id="edicion" name="edicion" onblur="verificacion(this.id)">
+                </div>                
+                <div class="margenForm">
+                    <label class="form-label">Color</label><br>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="opinion" id="service-good" value="buena" onblur="verificar(this.id)">
-                        <label class="form-check-label" for="service-good">Buena</label>
+                        <input class="form-check-input" type="radio" name="color" id="rojo" value="rojo" onblur="verificacion(this.id)">
+                        <label class="form-check-label" for="rojo">Rojo</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="opinion" id="service-average" value="regular" onblur="verificar(this.id)">
-                        <label class="form-check-label" for="service-average">Regular</label>
+                        <input class="form-check-input" type="radio" name="color" id="azul" value="azul" onblur="verificacion(this.id)">
+                        <label class="form-check-label" for="azul">Azul</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="opinion" id="service-bad" value="mala" onblur="verificar(this.id)"> 
-                        <label class="form-check-label" for="service-bad">Mala</label>
+                        <input class="form-check-input" type="radio" name="color" id="verde" value="verde" onblur="verificacion(this.id)"> 
+                        <label class="form-check-label" for="verde">Verde</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="color" id="negro" value="negro" onblur="verificacion(this.id)"> 
+                        <label class="form-check-label" for="negro">Negro</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="color" id="blanco" value="blanco" onblur="verificacion(this.id)"> 
+                        <label class="form-check-label" for="blanco">Blanco</label>
+                    </div>
+                    <div class="margenForm">
+                        <label class="form-label" for="habilidad">Describa la habilidad</label>
+                        <textarea name="habilidad" class="form-control" id="habilidad" onblur="verificacion(this.id)"></textarea>
                     </div>
                 </div>
-                <div class="m-2">
-                    <label class="form-label">¿Recomendarías nuestro producto/servicio?</label><br>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='recomendacion' id="recommend-yes" value="sí" onblur="verificar(this.id)">
-                        <label class="form-check-label" for="recommend-yes">Sí</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='recomendacion' id="recommend-no" value="no" onblur="verificar(this.id)">
-                        <label class="form-check-label" for="recommend-no">No</label>
-                    </div>
-                </div>
-                <div class="m-2">
-                    <label for="sugerencias" class="form-label">Sugerencias para mejorar:</label>
-                    <textarea id="sugerencias" class="form-control" name="sugerencias" onblur="verificar(this.id)"></textarea>
+                <div class="margenForm">
+                    <label class="form-label" for="tipo">Tipo</label>
+                    <input class="form-control" type="text" name="tipo" id="tipo" onblur="verificacion(this.id)">
                 </div>
             </form>
             <div class="d-flex justify-content-center">
-                <button class="btn btn-outline-success m-2" id="btn-enviar" value="Enviar">Enviar</button>
-                <button class="btn btn-outline-warning m-2" id="btn-limpiar" onclick="limpiar()">Limpiar</button>
+                <button class="btn btn-outline-success margenForm" id="boton-enviar" value="Enviar">Enviar</button>
+                <button class="btn btn-outline-warning margenForm" id="boton-limpiar" onclick="limpiar()">Limpiar</button>
             </div>
         </div>
         <div class="col-8">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
+            <div class="table-responsive ">
+                <table class="fondoTabla table-bordered table-hover ">
                     <thead class="table-success">
                         <tr>
-                            <th>Nombre Completo</th>
-                            <th>Email</th>
-                            <th>Fecha</th>
-                            <th>Producto/Servicio</th>
-                            <th>Calificación</th>
-                            <th>Comentarios</th>
-                            <th>Opinión</th>
-                            <th>¿Recomendarías?</th>
-                            <th>Sugerencias</th>
+                            <th class="texto cuadroT">Nombre</th>
+                            <th class="texto cuadroT">N° Serie</th>
+                            <th class="texto cuadroT">Fecha salida</th>
+                            <th class="texto cuadroT">Edicion</th>
+                            <th class="texto cuadroT">Color</th>
+                            <th class="texto cuadroT">Habilidad</th>
+                            <th class="texto cuadroT">Tipo</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -102,7 +91,7 @@
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="verifica.js"></script>
+    <script src="helper.js"></script>
     <script src="funciones.js" type="module"></script>
 </body>
 </html>
