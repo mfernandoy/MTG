@@ -48,7 +48,7 @@ document.getElementById('boton-enviar').addEventListener('click', async () => {
             actualizar(id,form)
             limpiar()
         }
-        id = 0
+id = 0
     }
 })
 
