@@ -114,6 +114,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 const colorRadio = document.querySelector(`input[name="color"][value="${item.color}"]`);
                 colorRadio.checked = true;
 
+                document.getElementById('boton-enviar').value = 'Editar'
+
                 id = btn.id;
             });
         });
