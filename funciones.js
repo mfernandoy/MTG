@@ -115,6 +115,8 @@ window.addEventListener('DOMContentLoaded', () => {
                 colorRadio.checked = true;
 
                 document.getElementById('boton-enviar').value = 'Editar'
+                document.getElementById('boton-enviar').innerHTML = 'Editar'
+
 
                 id = btn.id;
             });
