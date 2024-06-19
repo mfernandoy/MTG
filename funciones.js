@@ -9,7 +9,7 @@ document.getElementById('boton-enviar').addEventListener('click', async () => {
     })
 
     if (document.querySelectorAll('.is-invalid').length === 0) {
-        if (document.getElementById('boton-enviar').value === 'Editar') {
+        if (document.getElementById('boton-enviar').value === 'Enviar') {
             const form = {
                 'nombre': document.getElementById('nombre').value,
                 'serie': document.getElementById('serie').value,
