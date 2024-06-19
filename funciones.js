@@ -9,7 +9,7 @@ document.getElementById('boton-enviar').addEventListener('click', async () => {
     })
 
     if (document.querySelectorAll('.is-invalid').length === 0) {
-        if (document.getElementById('boton-enviar').value === 'Enviar') {
+        if (document.getElementById('boton-enviar').value === 'Editar') {
             const form = {
                 'nombre': document.getElementById('nombre').value,
                 'serie': document.getElementById('serie').value,
@@ -47,8 +47,8 @@ document.getElementById('boton-enviar').addEventListener('click', async () => {
             }
             actualizar(id,form)
             limpiar()
-            id = 0
         }
+        id = 0
     }
 })
 
