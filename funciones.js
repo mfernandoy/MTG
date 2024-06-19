@@ -102,6 +102,7 @@ window.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', async () => {
                 const doc = await obtener(btn.id);
                 const item =  doc.data();
+                console.log(item)
 
                 document.getElementById('nombre').value = item.nombre;
                 document.getElementById('serie').value = item.tipo;
