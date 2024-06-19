@@ -107,7 +107,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('serie').value = item.tipo;
                 document.getElementById('fecha').value = item.fecha;
                 document.getElementById('edicion').value = item.edicion;
-                document.getElementById('color').value = item.color;
                 document.getElementById('habilidad').value = item.habilidad;
                 document.getElementById('tipo').value = item.habilidad;
 
